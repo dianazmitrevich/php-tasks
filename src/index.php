@@ -3,4 +3,6 @@
 declare(strict_types=1);
 
 $connection = mysqli_connect('mysql', 'root', 'root');
-$connection->query('CREATE DATABASE `test0`');
+
+$db = $connection->query('SHOW databases;');
+echo var_dump($db);

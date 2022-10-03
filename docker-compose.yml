@@ -4,19 +4,18 @@ services:
     build:
       context: ./docker/php
     volumes:
-      - './src/:/var/www/html'
-  
+      - ./src/:/var/www/html
+
   nginx:
     image: nginx:latest
     ports:
       - 80:80
     volumes:
-      - './src/:/var/www/html'
-      - './docker/nginx/conf.d:/etc/nginx/conf.d'
+      - ./src/:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
 
   mysql:
-    image: mysql:8
+    build:
+      context: ./docker/data
     environment:
       - MYSQL_ROOT_PASSWORD=root
-    volumes:
-      - './docker/volumes/mysql:/var/lib/mysql'
