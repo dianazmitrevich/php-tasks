@@ -14,12 +14,12 @@ class Controller
         $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
 
         switch ($page) {
-            case ($page === 'header'):
-                require 'views/header.php';
+            case ($page === 'view'):
+                require 'views/view.php';
 
                 break;
-            case ($page === 'footer'):
-                require 'views/footer.php';
+            case ($page === 'add'):
+                require 'views/add.php';
 
                 break;
         }

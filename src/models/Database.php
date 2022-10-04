@@ -9,9 +9,19 @@ class Database
         $this->connection = $connection;
     }
 
-    public function test()
+    public function readTable(string $table): array
     {
-        $var = $this->connection->query('SHOW tables;');
-        var_dump($var);
+        $query = "insert into Data(id, email, name, gender, status) values(1, 'email' 'test', 'd', 'f', 'a')";
+        $this->connection->query($query);
+        $query = "insert into Data(id, email, name, gender, status) values(2, '2email' '2test', '2d', '2f', '2a')";
+        $this->connection->query($query);
+
+        $query = 'SELECT * FROM ' . $table;
+
+        if ($result = $this->connection->query($query)) {
+            $output = $result->fetch_all(MYSQLI_ASSOC);
+        }
+
+        return $result ? $output : [];
     }
 }
