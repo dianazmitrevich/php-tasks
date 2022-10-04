@@ -5,6 +5,9 @@ services:
       context: ./docker/php
     volumes:
       - ./src/:/var/www/html
+    links:
+      - "mysql"
+      - "nginx"
 
   nginx:
     image: nginx:latest
@@ -17,5 +20,7 @@ services:
   mysql:
     build:
       context: ./docker/data
+    ports:
+      - 3306:3306
     environment:
       - MYSQL_ROOT_PASSWORD=root

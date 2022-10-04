@@ -2,7 +2,13 @@
 
 declare(strict_types=1);
 
-$connection = mysqli_connect('mysql', 'root', 'root');
+require 'models/Database.php';
+require 'controllers/Controller.php';
 
-$db = $connection->query('SHOW databases;');
-echo var_dump($db);
+$config = require 'resources/config/config.php';
+
+$connection = mysqli_connect($config['db_host'], $config['db_user'], $config['db_password'], $config['db_name']);
+$db = new Database($connection);
+
+$controller = new Controller($db);
+$controller->main();
