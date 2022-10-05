@@ -26,7 +26,7 @@
                   <td><?php echo $value['gender'];?></td>
                   <td><?php echo $value['status'];?></td>
                   <td style="text-align: right;">
-                     <a class="btn btn-primary btn-sm" href="/index.php?edit&id=<?php echo $value['id']; ?>">Edit</a>
+                     <a class="btn btn-primary btn-sm" href="/index.php?page=edit&id=<?php echo $value['id']; ?>">Edit</a>
                      <a class="btn btn-danger btn-sm"
                         href="/index.php?page=delete&id=<?php echo $value['id']; ?>">Delete</a>
                   </td>

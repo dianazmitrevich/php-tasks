@@ -20,6 +20,17 @@ class Database
         return $result ? $output : [];
     }
 
+    public function getById(string $table, int $id)
+    {
+        $query = "SELECT * FROM $table WHERE id = $id";
+
+        if ($result = $this->connection->query($query)) {
+            $output = $result->fetch_assoc();
+        }
+
+        return $result ? $output : [];
+    }
+
     public function create(string $table, array $data)
     {
         $keys = array_keys($data);
@@ -46,7 +57,18 @@ class Database
         return ($result);
     }
 
-    public function edit() {
-        
+    public function edit(string $table, int $id, array $data)
+    {
+        array_splice($data, 0, 1);
+
+        foreach ($data as $key => $value) {
+            $values[] = $key.'=\''.$value.'\'';
+        }
+        $valuesString = implode(', ', $values);
+
+        $query = "UPDATE $table SET $valuesString WHERE id = $id";
+        $result = $this->connection->query($query);
+
+        return $result;
     }
 }

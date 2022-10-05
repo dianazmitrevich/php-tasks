@@ -41,7 +41,10 @@ class Controller
             case ($page === 'delete'):
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    $this->db->delete('Data', $id);
+                    $status = $this->db->delete('Data', $id);
+
+                    header('Location: /index.php?page=view&success-del=' . (bool)$status);
+                    exit();
                 }
                 require 'views/view.php';
 
@@ -49,7 +52,23 @@ class Controller
             case ($page === 'edit'):
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    $this->db->delete('Data', $id);
+                    $user = $this->db->getById('Data', $id);
+                }
+                require 'views/edit.php';
+
+                break;
+            case ($page === 'update'):
+                if (isset($_POST['update-user'])) {
+                    $user = new User();
+                    $user->setId($_GET['id']);
+                    $user->setEmail($_POST['email']);
+                    $user->setName($_POST['name']);
+                    $user->setGender($_POST['gender']);
+                    $user->setStatus($_POST['status']);
+                    $status = $this->updateUser($user);
+
+                    header('Location: /index.php?page=view&success-upd=' . (bool)$status . '&id=' . $user->getId());
+                    exit();
                 }
                 require 'views/view.php';
 
@@ -60,5 +79,9 @@ class Controller
     public function addUser(User $user)
     {
         return $this->db->create('Data', $user->toArray());
+    }
+    public function updateUser(User $user)
+    {
+        return $this->db->edit('Data', $user->getId(), $user->toArray());
     }
 }
