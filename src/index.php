@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 require 'models/Database.php';
-require 'controllers/Controller.php';
 require 'models/User.php';
+require 'controllers/Controller.php';
 
 $config = require 'resources/config/config.php';
 
