@@ -22,8 +22,7 @@ class Controller
                 require 'views/add.php';
 
                 break;
-
-            case ($page === 'create-user'):
+            case ($page === 'create'):
                 if (isset($_POST['add-user'])) {
                     $user = new User();
                     $user->setEmail($_POST['email']);
@@ -36,6 +35,22 @@ class Controller
                     exit();
                 }
 
+                require 'views/view.php';
+
+                break;
+            case ($page === 'delete'):
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $this->db->delete('Data', $id);
+                }
+                require 'views/view.php';
+
+                break;
+            case ($page === 'edit'):
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $this->db->delete('Data', $id);
+                }
                 require 'views/view.php';
 
                 break;

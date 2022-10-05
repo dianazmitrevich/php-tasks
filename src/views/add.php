@@ -6,7 +6,7 @@
    <div class="row g-5">
       <div class="col-md-7 col-lg-8">
          <h4 class="mb-3 mt-4">Add user</h4>
-         <form class="needs-validation" action="/index.php?page=create-user" novalidate="" method="post">
+         <form class="needs-validation" action="/index.php?page=create" novalidate="" method="post">
             <div class="row g-3">
                <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-muted">(Required)</span></label>

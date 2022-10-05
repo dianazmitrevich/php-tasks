@@ -37,4 +37,16 @@ class Database
 
         return $result;
     }
+
+    public function delete(string $table, int $id)
+    {
+        $query = "DELETE FROM $table WHERE id = $id";
+        $result = $this->connection->query($query);
+
+        return ($result);
+    }
+
+    public function edit() {
+        
+    }
 }
