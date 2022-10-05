@@ -13,3 +13,6 @@ $db = new Database($connection);
 
 $controller = new Controller($db);
 $controller->main();
+
+
+// make checks for field completeness and data correctness using JS and PHP

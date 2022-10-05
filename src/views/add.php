@@ -10,7 +10,7 @@
             <div class="row g-3">
                <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-muted">(Required)</span></label>
-                  <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
+                  <input type="email" class="form-control" id="email" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="you@example.com">
                   <div class="invalid-feedback">
                      Please enter a valid email address.
                   </div>
@@ -18,7 +18,7 @@
 
                <div class="col-12">
                   <label for="name" class="form-label">Your first and last name</label>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required="">
+                  <input type="text" class="form-control" id="name" name="name" pattern="\p{L}{2,}$" placeholder="" value="" required="">
                   <div class="invalid-feedback">
                      Valid first and last name is required.
                   </div>
