@@ -11,11 +11,6 @@ class Database
 
     public function readTable(string $table): array
     {
-        $query = "insert into Data(id, email, name, gender, status) values(1, 'email' 'test', 'd', 'f', 'a')";
-        $this->connection->query($query);
-        $query = "insert into Data(id, email, name, gender, status) values(2, '2email' '2test', '2d', '2f', '2a')";
-        $this->connection->query($query);
-
         $query = 'SELECT * FROM ' . $table;
 
         if ($result = $this->connection->query($query)) {
@@ -23,5 +18,23 @@ class Database
         }
 
         return $result ? $output : [];
+    }
+
+    public function create(string $table, array $data)
+    {
+        $keys = array_keys($data);
+        array_splice($keys, 0, 1);
+        $keysString = implode(', ', $keys);
+
+        foreach ($data as $key => $value) {
+            $valuesString[] = $value;
+        }
+        array_splice($valuesString, 0, 1);
+        $valuesString = '\''.implode('\', \'', $valuesString).'\'';
+
+        $query = "INSERT INTO $table($keysString) VALUES($valuesString)";
+        $result = $this->connection->query($query);
+
+        return $result;
     }
 }

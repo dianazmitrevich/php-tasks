@@ -6,27 +6,27 @@
    <div class="row g-5">
       <div class="col-md-7 col-lg-8">
          <h4 class="mb-3 mt-4">Add user</h4>
-         <form class="needs-validation" novalidate="" method="post">
+         <form class="needs-validation" action="/index.php?page=create-user" novalidate="" method="post">
             <div class="row g-3">
                <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-muted">(Required)</span></label>
-                  <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                  <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com">
                   <div class="invalid-feedback">
                      Please enter a valid email address.
                   </div>
                </div>
 
                <div class="col-12">
-                  <label for="firstName" class="form-label">Your first and last name</label>
-                  <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                  <label for="name" class="form-label">Your first and last name</label>
+                  <input type="text" class="form-control" id="name" name="name" placeholder="" value="" required="">
                   <div class="invalid-feedback">
                      Valid first and last name is required.
                   </div>
                </div>
 
                <div class="col-md-6">
-                  <label for="country" class="form-label">Gender</label>
-                  <select class="form-select" id="country" required="">
+                  <label for="gender" class="form-label">Gender</label>
+                  <select class="form-select" id="gender" name="gender" required="">
                      <option value="">Choose...</option>
                      <option>Male</option>
                      <option>Female</option>
@@ -37,8 +37,8 @@
                </div>
 
                <div class="col-md-6">
-                  <label for="state" class="form-label">Status</label>
-                  <select class="form-select" id="state" required="">
+                  <label for="status" class="form-label">Status</label>
+                  <select class="form-select" id="status" name="status" required="">
                      <option value="">Choose...</option>
                      <option>Active</option>
                      <option>Inactive</option>
@@ -49,7 +49,7 @@
                </div>
             </div>
 
-            <button class="w-100 btn btn-primary btn-lg mt-4" type="submit">Add</button>
+            <button class="w-100 btn btn-primary btn-lg mt-4" id="add-user" name="add-user" type="submit">Add</button>
          </form>
       </div>
    </div>

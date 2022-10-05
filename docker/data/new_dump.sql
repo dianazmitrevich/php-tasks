@@ -7,7 +7,7 @@ USE UsersList;
 DROP TABLE IF EXISTS `Data`;
 
 CREATE TABLE `Data` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(255) NOT NULL,
   `name` VARCHAR(255),
   `gender` VARCHAR(255),
