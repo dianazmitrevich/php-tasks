@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+require_once '../vendor/autoload.php';
+
+
 require 'models/Database.php';
 require 'models/User.php';
 require 'controllers/Controller.php';
@@ -13,6 +16,3 @@ $db = new Database($connection);
 
 $controller = new Controller($db);
 $controller->main();
-
-
-// make checks for field completeness and data correctness using JS and PHP
