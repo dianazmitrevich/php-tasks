@@ -1,6 +1,9 @@
 <?php
-   require 'header.php';
-   ?>
+
+use app\models\User;
+
+require 'header.php';
+?>
 
 <link rel="stylesheet" href="/resources/css/view-page.css">
 <div class="container">
@@ -20,8 +23,8 @@
                </thead>
                <tbody>
                   <?php
-                  foreach ($this->db->readTable('Data') as $value):
-                      ?>
+               foreach ((new User())->db->readTable('Data') as $value):
+                   ?>
                   <tr>
                      <td scope="row"><?php echo $value['email']; ?></td>
                      <td><?php echo $value['name']; ?></td>
@@ -45,4 +48,4 @@
 
 <?php
    require 'footer.php';
-   ?>
+?>

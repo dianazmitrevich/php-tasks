@@ -1,14 +1,11 @@
 <?php
 
+namespace app\controllers;
+
+use app\models\User;
+
 class Controller
 {
-    private $db;
-
-    public function __construct(Database $db)
-    {
-        $this->db = $db;
-    }
-
     public function main()
     {
         $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -30,7 +27,7 @@ class Controller
                     $user->setGender($_POST['gender']);
                     $user->setStatus($_POST['status']);
 
-                    $status = $this->addUser($user);
+                    $status = $user->create('Data', $user->toArray());
                     header('Location: /index.php?page=view&success=' . (bool)$status);
                     exit();
                 }
@@ -41,7 +38,7 @@ class Controller
             case ($page === 'delete'):
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    $status = $this->db->delete('Data', $id);
+                    $status = (new User())->delete('Data', $id);
 
                     header('Location: /index.php?page=view&success-del=' . (bool)$status);
                     exit();
@@ -52,7 +49,7 @@ class Controller
             case ($page === 'edit'):
                 if (isset($_GET['id'])) {
                     $id = $_GET['id'];
-                    $user = $this->db->getById('Data', $id);
+                    $user = (new User())->getById('Data', $id);
                 }
                 require 'views/edit.php';
 
@@ -65,7 +62,7 @@ class Controller
                     $user->setName($_POST['name']);
                     $user->setGender($_POST['gender']);
                     $user->setStatus($_POST['status']);
-                    $status = $this->updateUser($user);
+                    $status = $user->edit('Data', $user->getId(), $user->toArray());
 
                     header('Location: /index.php?page=view&success-upd=' . (bool)$status . '&id=' . $user->getId());
                     exit();
@@ -76,10 +73,6 @@ class Controller
         }
     }
 
-    public function addUser(User $user)
-    {
-        return $this->db->create('Data', $user->toArray());
-    }
     public function updateUser(User $user)
     {
         return $this->db->edit('Data', $user->getId(), $user->toArray());

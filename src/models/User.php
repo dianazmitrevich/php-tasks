@@ -1,23 +1,16 @@
 <?php
 
-class User
+namespace app\models;
+
+use app\core\Model;
+
+class User extends Model
 {
     private $id;
     private $email;
     private $name;
     private $gender;
     private $status;
-
-    public function __construct(array $userArr = [])
-    {
-        if (isset($userArr['id'])) {
-            $this->id = $userArr['id'];
-            $this->email = $userArr['email'];
-            $this->name = $userArr['name'];
-            $this->gender = $userArr['gender'];
-            $this->status = $userArr['status'];
-        }
-    }
 
     public function setId(int $id)
     {
@@ -70,5 +63,57 @@ class User
             'gender' => $this->gender,
             'status' => $this->status,
         ];
+    }
+
+    public function getById(string $table, int $id)
+    {
+        $query = "SELECT * FROM $table WHERE id = $id";
+
+        if ($result = $this->db->connection->query($query)) {
+            $output = $result->fetch_assoc();
+        }
+
+        return $result ? $output : [];
+    }
+
+    public function create(string $table, array $data)
+    {
+        $keys = array_keys($data);
+        array_splice($keys, 0, 1);
+        $keysString = implode(', ', $keys);
+
+        foreach ($data as $key => $value) {
+            $valuesString[] = $value;
+        }
+        array_splice($valuesString, 0, 1);
+        $valuesString = '\''.implode('\', \'', $valuesString).'\'';
+
+        $query = "INSERT INTO $table($keysString) VALUES($valuesString)";
+        $result = $this->db->connection->query($query);
+
+        return $result;
+    }
+
+    public function delete(string $table, int $id)
+    {
+        $query = "DELETE FROM $table WHERE id = $id";
+        $result = $this->db->connection->query($query);
+
+        return ($result);
+    }
+
+    public function edit(string $table, int $id, array $data)
+    {
+        array_splice($data, 0, 1);
+
+        foreach ($data as $key => $value) {
+            $values[] = $key.'=\''.$value.'\'';
+        }
+        $valuesString = implode(', ', $values);
+
+        $query = "UPDATE $table SET $valuesString WHERE id = $id";
+        $result = $this->db->connection->query($query);
+
+        return $result;
     }
 }
