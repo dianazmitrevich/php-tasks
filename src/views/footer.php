@@ -1,2 +1,2 @@
-   <script src="/resources/js/script.js"></script>
+   <script src="/resources/js/main.js"></script>
 </body>

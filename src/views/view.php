@@ -2,6 +2,7 @@
    require 'header.php';
    ?>
 
+<link rel="stylesheet" href="/resources/css/view-page.css">
 <div class="container">
    <div class="row g-5">
       <div class="col-md-7 col-lg-8">
@@ -40,6 +41,7 @@
       </div>
    </div>
 </div>
+<script src="/resources/js/view-page.js"></script>
 
 <?php
    require 'footer.php';
