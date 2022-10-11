@@ -10,7 +10,7 @@
             <div class="row g-3">
                <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-muted">(Required)</span></label>
-                  <input type="email" class="form-control" id="email" value="<?php echo $user['email']?>" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="you@example.com">
+                  <input type="email" class="form-control" id="email" value="<?php echo $user['email']?>" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="you@example.com" required="">
                   <div class="invalid-feedback">
                      Please enter a valid email address.
                   </div>
@@ -18,7 +18,7 @@
 
                <div class="col-12">
                   <label for="name" class="form-label">Your first and last name</label>
-                  <input type="text" class="form-control" id="name" value="<?php echo $user['name']?>" name="name" pattern="^\p{L}{2,}$" placeholder="" value="" required="">
+                  <input type="text" class="form-control" id="name" value="<?php echo $user['name']?>" name="name" pattern="^\pL+\s+\pL+$" placeholder="" value="" required="">
                   <div class="invalid-feedback">
                      Valid first and last name is required.
                   </div>

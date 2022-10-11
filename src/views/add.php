@@ -18,7 +18,7 @@
 
                <div class="col-12">
                   <label for="name" class="form-label">Your first and last name</label>
-                  <input type="text" class="form-control" id="name" name="name" pattern="\p{L}{2,}$" placeholder="" value="" required="">
+                  <input type="text" class="form-control" id="name" name="name" pattern="^\pL+\s+\pL+$" placeholder="" value="" required="">
                   <div class="invalid-feedback">
                      Valid first and last name is required.
                   </div>
