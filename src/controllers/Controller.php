@@ -8,73 +8,67 @@ class Controller
 {
     public function main()
     {
-        $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS);
+        require_once 'views/add.php';
+    }
 
-        switch ($page) {
-            case ($page === 'view'):
-                require 'views/view.php';
+    public function add(array $params)
+    {
+        if (!$params) {
+            require_once 'views/add.php';
+            exit;
+        }
 
-                break;
-            case ($page === 'add'):
-                require 'views/add.php';
+        if (isset($_POST['add-user'])) {
+            $user = new User();
+            $user->setEmail($_POST['email']);
+            $user->setName($_POST['name']);
+            $user->setGender($_POST['gender']);
+            $user->setStatus($_POST['status']);
 
-                break;
-            case ($page === 'create'):
-                if (isset($_POST['add-user'])) {
-                    $user = new User();
-                    $user->setEmail($_POST['email']);
-                    $user->setName($_POST['name']);
-                    $user->setGender($_POST['gender']);
-                    $user->setStatus($_POST['status']);
-
-                    $status = $user->create('Data', $user->toArray());
-                    header('Location: /index.php?page=view&success=' . (bool)$status);
-                    exit();
-                }
-
-                require 'views/view.php';
-
-                break;
-            case ($page === 'delete'):
-                if (isset($_GET['id'])) {
-                    $id = $_GET['id'];
-                    $status = (new User())->delete('Data', $id);
-
-                    header('Location: /index.php?page=view&success-del=' . (bool)$status);
-                    exit();
-                }
-                require 'views/view.php';
-
-                break;
-            case ($page === 'edit'):
-                if (isset($_GET['id'])) {
-                    $id = $_GET['id'];
-                    $user = (new User())->getById('Data', $id);
-                }
-                require 'views/edit.php';
-
-                break;
-            case ($page === 'update'):
-                if (isset($_POST['update-user'])) {
-                    $user = new User();
-                    $user->setId($_GET['id']);
-                    $user->setEmail($_POST['email']);
-                    $user->setName($_POST['name']);
-                    $user->setGender($_POST['gender']);
-                    $user->setStatus($_POST['status']);
-                    $status = $user->edit('Data', $user->getId(), $user->toArray());
-
-                    header('Location: /index.php?page=view&success-upd=' . (bool)$status . '&id=' . $user->getId());
-                    exit();
-                }
-                require 'views/view.php';
-
-                break;
+            $user->create('Data', $user->toArray());
+            header('Location: /view');
+            exit();
         }
     }
 
-    public function updateUser(User $user)
+    public function view(array $params)
     {
-        return $this->db->edit('Data', $user->getId(), $user->toArray());
+        if (!$params) {
+            require_once 'views/view.php';
+            exit;
+        }
+
+        if (isset($params['id'])) {
+            $id = $params['id'];
+            (new User())->delete('Data', $id);
+
+            header('Location: /view');
+            exit();
+        }
+    }
+
+    public function edit(array $params)
+    {
+        if ($params) {
+            if (isset($params['id'])) {
+                $id = $params['id'];
+                $user = (new User())->getById('Data', $id);
+            }
+
+            if (isset($_POST['update-user'])) {
+                $user = new User();
+                $user->setId($params['id']);
+                $user->setEmail($_POST['email']);
+                $user->setName($_POST['name']);
+                $user->setGender($_POST['gender']);
+                $user->setStatus($_POST['status']);
+                $user->edit('Data', $user->getId(), $user->toArray());
+
+                require 'views/view.php';
+                exit();
+            }
+
+            require 'views/edit.php';
+        }
     }
 }

@@ -31,8 +31,8 @@ require 'header.php';
                      <td><?php echo $value['gender'];?></td>
                      <td><?php echo $value['status'];?></td>
                      <td style="text-align: right;">
-                        <a class="btn btn-primary btn-sm" href="/index.php?page=edit&id=<?php echo $value['id']; ?>">Edit</a>
-                        <form class="delete-form" action="/index.php?page=delete&id=<?php echo $value['id']; ?>" method="post">
+                        <a class="btn btn-primary btn-sm" href="/edit?id=<?php echo $value['id']; ?>">Edit</a>
+                        <form class="delete-form" action="/view?id=<?php echo $value['id']; ?>" method="post">
                            <button type="submit" onclick="return confirmDelete()" class="btn btn-danger btn-sm delete-button">Delete</button>
                         </form>
                      </td>

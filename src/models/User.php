@@ -99,7 +99,7 @@ class User extends Model
         $query = "DELETE FROM $table WHERE id = $id";
         $result = $this->db->connection->query($query);
 
-        return ($result);
+        return $result;
     }
 
     public function edit(string $table, int $id, array $data)

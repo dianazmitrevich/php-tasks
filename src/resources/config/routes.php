@@ -1,10 +1,16 @@
 <?php
 
 return [
-    '/' => function () {
-        echo 'home page';
-    },
-    '/add' => function () {
-        echo 'add page';
-    },
+    '/' => [
+        'action' => 'main',
+    ],
+    '/add' => [
+        'action' => 'add',
+    ],
+    '/view' => [
+        'action' => 'view',
+    ],
+    '/edit' => [
+        'action' => 'edit',
+    ],
 ];
