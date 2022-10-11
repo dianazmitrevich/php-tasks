@@ -16,7 +16,7 @@
    <nav class="py-2 bg-light border-bottom">
       <div class="container d-flex flex-wrap">
          <ul class="nav me-auto">
-            <li class="nav-item "><a href="/index.php?page=add" class="nav-link link-dark px-2">Add</a></li>
+            <li class="nav-item "><a href="/add" class="nav-link link-dark px-2">Add</a></li>
             <li class="nav-item"><a href="/index.php?page=view" class="nav-link link-dark px-2 active"
                   aria-current="page">View</a></li>
          </ul>
