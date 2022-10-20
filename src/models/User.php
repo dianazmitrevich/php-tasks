@@ -89,17 +89,15 @@ class User extends Model
         $valuesString = '\''.implode('\', \'', $valuesString).'\'';
 
         $query = "INSERT INTO $table($keysString) VALUES($valuesString)";
-        $result = $this->db->connection->query($query);
 
-        return $result;
+        return $this->db->connection->query($query);
     }
 
     public function delete(string $table, int $id)
     {
         $query = "DELETE FROM $table WHERE id = $id";
-        $result = $this->db->connection->query($query);
 
-        return $result;
+        return $this->db->connection->query($query);
     }
 
     public function edit(string $table, int $id, array $data)
@@ -112,8 +110,7 @@ class User extends Model
         $valuesString = implode(', ', $values);
 
         $query = "UPDATE $table SET $valuesString WHERE id = $id";
-        $result = $this->db->connection->query($query);
 
-        return $result;
+        return $this->db->connection->query($query);
     }
 }

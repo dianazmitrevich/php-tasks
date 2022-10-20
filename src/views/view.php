@@ -1,6 +1,5 @@
 <?php
 
-use app\models\User;
 
 require 'header.php';
 ?>
@@ -23,7 +22,7 @@ require 'header.php';
                </thead>
                <tbody>
                   <?php
-               foreach ((new User())->db->readTable('Data') as $value):
+               foreach ($this->user->db->readTable('Data') as $value):
                    ?>
                   <tr>
                      <td scope="row"><?php echo $value['email']; ?></td>

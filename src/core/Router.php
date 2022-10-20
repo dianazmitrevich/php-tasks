@@ -2,19 +2,22 @@
 
 namespace app\core;
 
-use app\controllers\Controller;
+use app\controllers\AddController;
+use app\controllers\ViewController;
 
 class Router
 {
     private string $url;
     private array $routes;
     private array $params;
+    private array $controllers;
 
     public function __construct()
     {
         $this->url = $_SERVER['REQUEST_URI'];
         $this->routes = include_once 'resources/config/routes.php';
         $this->params = $this->listParameters($_SERVER['QUERY_STRING']);
+        $this->controllers = ['AddController' => (new AddController), 'ViewController' => (new ViewController)];
     }
 
     public function run()
@@ -28,10 +31,9 @@ class Router
             exit;
         }
 
-        $controller = new Controller;
         $action = $this->routes[$path]['action'];
 
-        call_user_func([$controller, $action], $this->params);
+        call_user_func([$this->controllers[$this->routes[$path]['controller']], $action], $this->params);
     }
 
     public function listParameters(string $params)
