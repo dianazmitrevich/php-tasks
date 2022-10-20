@@ -39,7 +39,7 @@ class ViewController
                 $this->user->setStatus($_POST['status']);
                 $this->user->edit('Data', $this->user->getId(), $this->user->toArray());
 
-                require_once 'views/view.php';
+                header('Location: /view');
                 exit();
             }
 
