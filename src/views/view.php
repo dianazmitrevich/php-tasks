@@ -22,7 +22,7 @@ require 'header.php';
                </thead>
                <tbody>
                   <?php
-               foreach ($this->user->db->readTable('Data') as $value):
+               foreach ($this->readTable('Data') as $value):
                    ?>
                   <tr>
                      <td scope="row"><?php echo $value['email']; ?></td>

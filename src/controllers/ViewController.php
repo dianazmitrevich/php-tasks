@@ -45,5 +45,12 @@ class ViewController
 
             require_once 'views/edit.php';
         }
+
+        header('Location: /');
+    }
+
+    public function readTable(string $table)
+    {
+        return $this->user->db->readTable($table);
     }
 }

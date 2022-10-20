@@ -26,9 +26,7 @@ class Router
         $path = $uri['path'];
 
         if (array_key_exists($path, $this->routes) === false) {
-            echo '404';
-
-            exit;
+            header('Location: /');
         }
 
         $action = $this->routes[$path]['action'];

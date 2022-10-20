@@ -30,5 +30,7 @@ class AddController
              header('Location: /view');
              exit();
          }
+
+         header('Location: /');
      }
 }
