@@ -13,7 +13,7 @@ class ViewController
         $this->user = new User();
     }
 
-    public function view(array $params)
+    public function view(array $params = [])
     {
         if ($params) {
             $this->user->delete('Data', $params['id']);
@@ -25,7 +25,7 @@ class ViewController
         require_once 'views/view.php';
     }
 
-    public function edit(array $params)
+    public function edit(array $params = [])
     {
         if ($params) {
             $user = $this->user->getById('Data', $params['id']);

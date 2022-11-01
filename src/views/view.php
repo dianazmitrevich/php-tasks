@@ -32,6 +32,7 @@ require 'header.php';
                      <td style="text-align: right;">
                         <a class="btn btn-primary btn-sm" href="/edit?id=<?php echo $value['id']; ?>">Edit</a>
                         <form class="delete-form" action="/view?id=<?php echo $value['id']; ?>" method="post">
+                        <input type="hidden" name="method" value="PATCH" required="">
                            <button type="submit" onclick="return confirmDelete()" class="btn btn-danger btn-sm delete-button">Delete</button>
                         </form>
                      </td>

@@ -6,10 +6,11 @@
    <div class="row g-5">
       <div class="col-md-7 col-lg-8">
          <h4 class="mb-3 mt-4">Add user</h4>
-         <form class="needs-validation" action="/add?add=true" novalidate="" method="post">
+         <form class="needs-validation" action="/users" novalidate="" method="post">
             <div class="row g-3">
                <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-muted">(Required)</span></label>
+                  <input type="hidden" name="method" value="PATCH" required="">
                   <input type="email" class="form-control" id="email" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="you@example.com" required="">
                   <div class="invalid-feedback">
                      Please enter a valid email address.
@@ -56,5 +57,5 @@
 </div>
 
 <?php
-   require 'footer.php';
+      require 'footer.php';
    ?>

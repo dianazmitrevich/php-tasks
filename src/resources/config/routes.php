@@ -2,19 +2,40 @@
 
 return [
     '/' => [
+        'method' => 'GET',
         'controller' => 'AddController',
         'action' => 'main',
     ],
-    '/add' => [
+    // '/add' => [
+    //     'controller' => 'AddController',
+    //     'action' => 'add',
+    // ],
+    // '/view' => [
+    //     'controller' => 'ViewController',
+    //     'action' => 'view',
+    // ],
+    // '/edit' => [
+    //     'controller' => 'ViewController',
+    //     'action' => 'edit',
+    // ],
+    '/users' => [
+        'method' => 'GET',
         'controller' => 'AddController',
         'action' => 'add',
     ],
-    '/view' => [
+    '/users' => [
+        'method' => 'POST',
         'controller' => 'ViewController',
         'action' => 'view',
     ],
-    '/edit' => [
+    '/users' => [
+        'method' => 'PUT',
         'controller' => 'ViewController',
-        'action' => 'edit',
+        'action' => 'view',
+    ],
+    '/users' => [
+        'method' => 'DELETE',
+        'controller' => 'ViewController',
+        'action' => 'view',
     ],
 ];

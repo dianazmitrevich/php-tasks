@@ -15,10 +15,11 @@ class AddController
 
     public function main()
     {
+        var_dump($_SERVER['REQUEST_METHOD']);
         require_once 'views/add.php';
     }
 
-     public function add(array $params)
+     public function add(array $params = [])
      {
          if (isset($_POST['add-user'])) {
              $this->user->setEmail($_POST['email']);

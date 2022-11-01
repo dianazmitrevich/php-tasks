@@ -6,10 +6,11 @@
    <div class="row g-5">
       <div class="col-md-7 col-lg-8">
          <h4 class="mb-3 mt-4">Editing user #<?php echo $user['id']?></h4>
-         <form class="needs-validation" action="/edit?id=<?php echo $user['id']; ?>" novalidate="" method="post">
+         <form class="needs-validation" action="/edit?id=<?php echo $user['id']; ?>" novalidate="" method="">
             <div class="row g-3">
                <div class="col-12">
                   <label for="email" class="form-label">Email <span class="text-muted">(Required)</span></label>
+                  <input type="hidden" name="method" value="PATCH" required="">
                   <input type="email" class="form-control" id="email" value="<?php echo $user['email']?>" name="email" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" placeholder="you@example.com" required="">
                   <div class="invalid-feedback">
                      Please enter a valid email address.
